@@ -56,7 +56,7 @@ class Document
      *
      * @ORM\Column(name="unit", type="string", length=10)
      * @Assert\NotBlank()
-     * @Assert\Regex("/^[A-Z]{2,4}-[0-9]{4}$/")
+     * @Assert\Regex("/^[A-Z]{2,4}-[0-9]{4}$|^[A-Z]{2}[0-9]{1}[A-Z]{1}[0-9]{2}$|^[A-Z]{2}-[0-9]{4}$/")
      */
     private $unit;
 

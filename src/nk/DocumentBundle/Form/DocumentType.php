@@ -49,7 +49,7 @@ class DocumentType extends AbstractType
             ->add('unit', 'text', array(
                 'label' => 'Unité',
                 'attr'  => array(
-                    'placeholder'       => 'IGI-3003, ...',
+                    'placeholder'       => 'IGI-3003, IN3R11, GI-4101...',
                     'data-autocomplete' => implode(',', $this->metadata['units']),
                 )
             ))
