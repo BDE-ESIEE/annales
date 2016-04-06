@@ -8,22 +8,22 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.4",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "doctrine/doctrine-bundle": "~1.2",
+        "symfony/symfony": "~2.8",
+        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
+        "doctrine/doctrine-bundle": "~1.4",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~2.3",
-        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/distribution-bundle": "~3.0,>=3.0.12",
+        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "leafo/lessphp": "0.3.*@dev",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/security-extra-bundle": "dev-master",
-        "knplabs/knp-paginator-bundle": "2.3.*@dev"
+        "knplabs/knp-paginator-bundle": "2.4.*"
     },
     "scripts": {
         "post-install-cmd": [
