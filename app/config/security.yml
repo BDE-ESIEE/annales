@@ -32,6 +32,15 @@ security:
                 lifetime: 31536000
                 path:     /
                 domain:   ~
+            oauth:
+                resource_owners :
+                    google : "/login/check-google"
+                login_path      : /login
+                use_forward     : false
+                failure_path    : /login
+
+                oauth_user_provider :
+                    service : nk_user.security.user_provider
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

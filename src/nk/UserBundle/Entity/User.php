@@ -75,6 +75,16 @@ class User extends BaseUser
     private $folderCollection;
 
     /**
+     * @ORM\Column(name="google_id", type="string", length=255, nullable=true)
+     */
+    private $googleId;
+
+    /**
+     * @ORM\Column(name="google_access_token", type="string", length=255, nullable=true)
+     */
+    private $googleAccessToken;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -103,6 +113,8 @@ class User extends BaseUser
     public function setResource(Resource $resource)
     {
         $this->resource = $resource;
+
+        return $this;
     }
 
     /**
@@ -119,6 +131,8 @@ class User extends BaseUser
     public function setWeekBeforeExam($weekBeforeExam)
     {
         $this->weekBeforeExam = $weekBeforeExam;
+
+        return $this;
     }
 
     /**
@@ -267,5 +281,51 @@ class User extends BaseUser
     public function getFolders()
     {
         return $this->folders;
+    }
+
+    /**
+     * Set googleId
+     *
+     * @param string $googleId
+     * @return User
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    /**
+     * Get googleId
+     *
+     * @return string 
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * Set googleAccessToken
+     *
+     * @param string $googleAccessToken
+     * @return User
+     */
+    public function setGoogleAccessToken($googleAccessToken)
+    {
+        $this->googleAccessToken = $googleAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get googleAccessToken
+     *
+     * @return string 
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->googleAccessToken;
     }
 }

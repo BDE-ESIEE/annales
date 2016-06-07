@@ -37,6 +37,10 @@
             <button class="btn" type="submit">
                 {{ 'security.login.submit'|trans }}
             </button>
+
+            <a href="{{ path('hwi_oauth_service_redirect', {service: 'google'}) }}" class="btn btn-google">
+                Se connecter avec Google
+            </a>
         </div>
     </form>
 {% endblock fos_user_content %}

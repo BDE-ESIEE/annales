@@ -16,3 +16,6 @@ parameters:
 
     piwik_site_id: 0
     piwik_url: domain.tld/piwik
+
+    client_id     : yoloSwag
+    client_secret : 7-1NeverForget
