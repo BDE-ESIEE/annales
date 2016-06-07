@@ -33,7 +33,7 @@ class User extends BaseUser
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *      pattern="/^[a-z\.-]+@edu\.esiee\.fr$/",
+     *      pattern="/^[a-z\.-]+[0-9]{0,2}@edu\.esiee\.fr$/",
      *      message="Vous devez avoir un mail @edu.esiee.fr"
      *      )
      */
