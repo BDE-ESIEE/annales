@@ -64,6 +64,8 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
+        types:
+            json:     \Doctrine\DBAL\Types\StringType 
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -148,3 +150,5 @@ hwi_oauth:
             client_id     : "%client_id%"
             client_secret : "%client_secret%"
             scope         : "email profile"
+    http_client:
+        proxy: "%proxy%"

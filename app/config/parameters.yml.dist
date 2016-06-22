@@ -19,3 +19,4 @@ parameters:
 
     client_id     : yoloSwag
     client_secret : 7-1NeverForget
+    proxy: ""
