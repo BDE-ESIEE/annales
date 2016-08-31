@@ -152,3 +152,7 @@ hwi_oauth:
             scope         : "email profile"
     http_client:
         proxy: "%proxy%"
+
+
+
+nelmio_api_doc: ~

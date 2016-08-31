@@ -24,7 +24,10 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/security-extra-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "2.4.*",
-        "hwi/oauth-bundle": "^0.4.1"
+        "hwi/oauth-bundle": "^0.4.1",
+        "jms/serializer-bundle": "^1.1",
+        "friendsofsymfony/rest-bundle": "^2.0",
+        "nelmio/api-doc-bundle": "^2.13"
     },
     "scripts": {
         "post-install-cmd": [

@@ -49,3 +49,7 @@ hwi_oauth_login:
 
 google_login:
     path: /login/check-google
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
