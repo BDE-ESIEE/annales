@@ -51,5 +51,5 @@ google_login:
     path: /login/check-google
 
 NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    resource: "@nkApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc

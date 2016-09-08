@@ -1,0 +1,4 @@
+services:
+#    nk_api_doc.example:
+#        class: nk\ApiDocBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

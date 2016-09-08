@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new nk\DocumentBundle\nkDocumentBundle(),
             new nk\ExamBundle\nkExamBundle(),
             new nk\FolderBundle\nkFolderBundle(),
+            new nk\ApiDocBundle\nkApiDocBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
