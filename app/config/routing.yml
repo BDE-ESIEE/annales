@@ -4,6 +4,10 @@ nk_home:
         _controller: FrameworkBundle:Template:template
         template:    '::home.html.twig'
 
+api_rest:
+    resource: "routing_rest.yml"
+    prefix:   /api
+
 nk_folder:
     resource: "@nkFolderBundle/Resources/config/routing.yml"
     prefix:   /folders

@@ -1,0 +1,36 @@
+nk_document_api_rest_all_class:
+    path:  /class.{_format}
+    defaults: { _controller: nkDocumentBundle:ApiRest:allClasses, class: null, field: null, _format: json }
+    methods:  [GET]
+    requirements:
+        _format: json|xml
+
+nk_document_api_rest_all_fields:
+    path:  /fields/{class}.{_format}
+    defaults: { _controller: nkDocumentBundle:ApiRest:allFields, class: null, field: null, _format: json }
+    methods:  [GET]
+    requirements:
+        _format: json|xml
+        class: \w+
+
+nk_document_api_rest_all_documents:
+    path:  /documents/{class}/{field}.{_format}
+    defaults: { _controller: nkDocumentBundle:ApiRest:allDocuments, class: null, field: null, _format: json }
+    methods:  [GET]
+    requirements:
+        _format: json|xml
+
+nk_document_api_rest_show:
+    pattern:  /document/{id}.{_format}
+    defaults: { _controller: nkDocumentBundle:ApiRest:getDocument, _format: json }
+    methods:  [GET]
+    requirements:
+        id: \d+
+        _format: json|xml
+
+nk_document_api_rest_download_all:
+    pattern:  /document/{id}/download
+    defaults: { _controller: nkDocumentBundle:Document:download }
+    methods:  [GET]
+    requirements:
+        id: \d+

@@ -5,6 +5,8 @@ namespace nk\DocumentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
+
 
 /**
  * File
@@ -12,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="nk_file")
  * @ORM\Entity(repositoryClass="nk\DocumentBundle\Entity\FileRepository")
  * @Gedmo\Uploadable(allowOverwrite = true, filenameGenerator = "SHA1")
+ * @Serializer\ExclusionPolicy("none")
  */
 class File
 {
@@ -21,6 +24,7 @@ class File
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({"list", "details"})
      */
     private $id;
 
@@ -28,6 +32,7 @@ class File
      * @var Document
      * @ORM\ManyToOne(targetEntity="Document", inversedBy="files")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"details"})
      */
     private $document;
 
@@ -36,6 +41,7 @@ class File
      *
      * @ORM\Column(name="name", type="string", length=100)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $name;
 
@@ -44,6 +50,7 @@ class File
      *
      * @ORM\Column(name="size", type="string", length=10)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $size;
 
@@ -52,6 +59,7 @@ class File
      *
      * @ORM\Column(name="path", type="string", length=255)
      * @Gedmo\UploadableFilePath
+     * @Serializer\Exclude
      */
     private $path;
 
@@ -171,6 +179,9 @@ class File
      * Get web path
      *
      * @return string
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("path")
+     * @Serializer\Groups({"details"})
      */
     public function getWebPath()
     {

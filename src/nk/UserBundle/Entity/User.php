@@ -9,6 +9,7 @@ use nk\ExamBundle\Entity\IgnoredExam;
 use nk\FolderBundle\Entity\Folder;
 use Symfony\Component\Validator\Constraints as Assert;
 use nk\ExamBundle\Entity\Resource as Resource;
+use JMS\Serializer\Annotation as Serializer;
 use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -16,6 +17,7 @@ use \Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="nk_user")
  * @ORM\Entity(repositoryClass="nk\UserBundle\Entity\UserRepository")
+ * @Serializer\ExclusionPolicy("none")
  */
 class User extends BaseUser
 {
@@ -25,6 +27,7 @@ class User extends BaseUser
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({"list", "details"})
      */
     protected $id;
 
@@ -36,8 +39,16 @@ class User extends BaseUser
      *      pattern="/^[a-z\.-]+[0-9]{0,2}@edu\.esiee\.fr$/",
      *      message="Vous devez avoir un mail @edu.esiee.fr"
      *      )
+     * @Serializer\Groups({"list", "details"})
      */
     protected $email;
+
+    /**
+     * @var string
+     *
+     * @Serializer\Groups({"list", "details"})
+     */
+    protected $username;
 
     /**
      * @var integer
@@ -51,6 +62,7 @@ class User extends BaseUser
      * @var Resource
      * @ORM\ManyToOne(targetEntity="\nk\ExamBundle\Entity\Resource", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"details"})
      */
     private $resource;
 

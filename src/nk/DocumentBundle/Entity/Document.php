@@ -8,12 +8,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use nk\FolderBundle\Entity\Folder;
 use Symfony\Component\Validator\Constraints as Assert;
 use nk\UserBundle\Entity\User as User;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Document
  *
  * @ORM\Table(name="nk_document")
  * @ORM\Entity(repositoryClass="nk\DocumentBundle\Entity\DocumentRepository")
+ * @Serializer\ExclusionPolicy("none")
  */
 class Document
 {
@@ -23,6 +25,7 @@ class Document
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({"list", "details"})
      */
     private $id;
 
@@ -32,6 +35,7 @@ class Document
      * @ORM\Column(name="type", type="string", length=10)
      * @Assert\NotBlank()
      * @Assert\Choice(choices = {"Annale", "Cours", "TD", "TP", "Projet"})
+     * @Serializer\Groups({"list", "details"})
      */
     private $type;
 
@@ -40,6 +44,7 @@ class Document
      *
      * @ORM\Column(name="class", type="string", length=10)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $class;
 
@@ -48,6 +53,7 @@ class Document
      *
      * @ORM\Column(name="field", type="string", length=30)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $field;
 
@@ -57,6 +63,7 @@ class Document
      * @ORM\Column(name="unit", type="string", length=10)
      * @Assert\NotBlank()
      * @Assert\Regex("/^[A-Z]{2,4}-[0-9]{4}$|^[A-Z]{2}[0-9]{1}[A-Z]{1}[0-9]{2}$|^[A-Z]{2}-[0-9]{4}$/")
+     * @Serializer\Groups({"list", "details"})
      */
     private $unit;
 
@@ -66,6 +73,7 @@ class Document
      * @ORM\Column(name="year", type="string", length=10)
      * @Assert\NotBlank()
      * @Assert\Regex("/^20[0-9]{2}([ -]20[0-9]{2})?$/")
+     * @Serializer\Groups({"list", "details"})
      */
     private $year;
 
@@ -74,6 +82,7 @@ class Document
      *
      * @ORM\Column(name="teacher", type="string", length=100)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $teacher;
 
@@ -82,6 +91,7 @@ class Document
      *
      * @ORM\Column(name="subject", type="string", length=200)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $subject;
 
@@ -90,6 +100,7 @@ class Document
      *
      * @ORM\Column(name="slug", type="string", length=204)
      * @Gedmo\Slug(fields={"subject"})
+     * @Serializer\Groups({"list", "details"})
      */
     private $slug;
 
@@ -98,6 +109,7 @@ class Document
      *
      * @ORM\Column(name="created_at", type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @Serializer\Groups({"list", "details"})
      */
     private $createdAt;
 
@@ -107,6 +119,8 @@ class Document
      * @ORM\ManyToOne(targetEntity="nk\UserBundle\Entity\User", inversedBy="documents")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * @Gedmo\Blameable(on="create")
+     * @Serializer\Groups({"details"})
+     * @Serializer\MaxDepth(1)
      */
     private $author;
 
@@ -114,6 +128,7 @@ class Document
      * @var integer
      *
      * @ORM\Column(name="downloaded", type="integer")
+     * @Serializer\Groups({"details"})
      */
     private $downloaded = 0;
 
@@ -121,17 +136,21 @@ class Document
      * @var integer
      *
      * @ORM\Column(name="viewed", type="integer")
+     * @Serializer\Groups({"details"})
      */
     private $viewed = 0;
 
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="File", mappedBy="document", cascade={"remove"})
+     * @Serializer\Groups({"details"})
      */
     protected $files;
 
     /**
      * @ORM\ManyToMany(targetEntity="nk\FolderBundle\Entity\Folder", mappedBy="documents")
+     * @Serializer\Groups({"details"})
+     * @Serializer\MaxDepth(2)
      **/
     private $folders;
 

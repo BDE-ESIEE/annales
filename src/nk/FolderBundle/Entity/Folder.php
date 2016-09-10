@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use nk\DocumentBundle\Entity\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use nk\UserBundle\Entity\User as User;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Folder
@@ -15,6 +16,7 @@ use nk\UserBundle\Entity\User as User;
  * @ORM\Table(name="nk_folder")
  * @ORM\Entity(repositoryClass="nk\FolderBundle\Entity\FolderRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Serializer\ExclusionPolicy("none")
  */
 class Folder
 {
@@ -24,6 +26,7 @@ class Folder
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({"list", "details"})
      */
     private $id;
 
@@ -31,6 +34,7 @@ class Folder
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=200)
+     * @Serializer\Groups({"list", "details"})
      */
     private $name;
 
@@ -39,6 +43,7 @@ class Folder
      *
      * @ORM\Column(name="slug", type="string", length=204)
      * @Gedmo\Slug(fields={"name"})
+     * @Serializer\Groups({"list", "details"})
      */
     private $slug;
 
@@ -46,6 +51,7 @@ class Folder
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=10, nullable=true)
+     * @Serializer\Groups({"list", "details"})
      */
     private $type;
 
@@ -53,6 +59,7 @@ class Folder
      * @var string
      *
      * @ORM\Column(name="class", type="string", length=10, nullable=true)
+     * @Serializer\Groups({"list", "details"})
      */
     private $class;
 
@@ -60,6 +67,7 @@ class Folder
      * @var string
      *
      * @ORM\Column(name="field", type="string", length=30, nullable=true)
+     * @Serializer\Groups({"list", "details"})
      */
     private $field;
 
@@ -67,6 +75,7 @@ class Folder
      * @var string
      *
      * @ORM\Column(name="unit", type="string", length=10, nullable=true)
+     * @Serializer\Groups({"list", "details"})
      */
     private $unit;
 
@@ -81,6 +90,7 @@ class Folder
      * @var string
      *
      * @ORM\Column(name="teacher", type="string", length=100, nullable=true)
+     * @Serializer\Groups({"list", "details"})
      */
     private $teacher;
 
@@ -89,6 +99,7 @@ class Folder
      *
      * @ORM\Column(name="created_at", type="datetime")
      * @Gedmo\Timestampable(on="create")
+     * @Serializer\Groups({"list", "details"})
      */
     private $createdAt;
 
@@ -98,18 +109,21 @@ class Folder
      * @ORM\ManyToOne(targetEntity="nk\UserBundle\Entity\User", inversedBy="folders")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * @Gedmo\Blameable(on="create")
+     * @Serializer\Groups({"details"})
      */
     private $author;
 
     /**
      * @ORM\ManyToMany(targetEntity="nk\UserBundle\Entity\User", inversedBy="folderCollection", cascade={"persist"})
      * @ORM\JoinTable(name="nk_user_folder")
+     * @Serializer\Groups({"details"})
      */
     private $users;
 
     /**
      * @ORM\ManyToMany(targetEntity="nk\DocumentBundle\Entity\Document", inversedBy="folders", cascade={"persist"})
      * @ORM\JoinTable(name="nk_document_folder")
+     * @Serializer\Groups({"details"})
      */
     private $documents;
 

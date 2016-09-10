@@ -1,0 +1,3 @@
+nk_document:
+    resource: "@nkDocumentBundle/Resources/config/routing/api_rest.yml"
+    prefix:   /

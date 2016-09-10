@@ -5,6 +5,8 @@ namespace nk\DocumentBundle\Controller;
 use nk\DocumentBundle\Entity\Document;
 use nk\DocumentBundle\Form\DocumentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -12,7 +14,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class DocumentController extends Controller
+class DocumentController extends FOSRestController
 {
     /**
      * @var EntityManager
@@ -47,6 +49,15 @@ class DocumentController extends Controller
         return $this->handleForm($document, 'nk_document_show');
     }
 
+
+    /**
+     * Download all the files from a document
+     *
+     * @ApiDoc(
+     *  section="Documents",
+     *  description="Get all the files from a document"
+     * )
+     */
     public function downloadAction(Document $document)
     {
         if(count($document->getFiles()) === 0)

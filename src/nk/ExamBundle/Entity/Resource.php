@@ -6,12 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use nk\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 use \Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Resource
  *
  * @ORM\Table(name="nk_resource")
  * @ORM\Entity(repositoryClass="nk\ExamBundle\Entity\ResourceRepository")
+ * @Serializer\ExclusionPolicy("none")
  */
 class Resource
 {
@@ -21,6 +23,7 @@ class Resource
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({"list", "details"})
      */
     private $id;
 
@@ -29,6 +32,7 @@ class Resource
      *
      * @ORM\Column(name="name", type="string", length=20)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $name;
 
@@ -37,6 +41,7 @@ class Resource
      *
      * @ORM\Column(name="code", type="integer")
      * @Assert\NotBlank()
+     * @Serializer\Groups({"list", "details"})
      */
     private $code;
 
