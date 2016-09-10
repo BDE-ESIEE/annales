@@ -205,4 +205,18 @@ class ApiRestController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    /**
+     * Fetch every metadatas
+     *
+     * @ApiDoc(
+     *  section="Documents",
+     *  description="Get metadata list",
+     *  resource=true
+     * )
+     */
+    public function allMetadatasAction()
+    {
+        return $this->handleView($this->view($this->get('nk.metadata_finder')->findAll(), 200));
+    }
 }

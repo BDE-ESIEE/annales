@@ -41,3 +41,10 @@ nk_document_api_rest_search:
     methods:  [GET]
     requirements:
         _format: json|xml
+
+nk_document_api_rest_all_metadata:
+    pattern:  /metadatas.{_format}
+    defaults: { _controller: nkDocumentBundle:ApiRest:allMetadatas, _format: json }
+    methods:  [GET]
+    requirements:
+        _format: json|xml
