@@ -119,7 +119,7 @@ class ApiRestController extends FOSRestController
      *
      * @ApiDoc(
      *  section="Documents",
-     *  description="Get class list",
+     *  description="Get document by id",
      *  resource=true
      * )
      */
