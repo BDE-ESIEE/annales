@@ -1,12 +1,12 @@
 nk_document_api_rest_all_class:
-    path:  /class.{_format}
+    path:  /document/class.{_format}
     defaults: { _controller: nkDocumentBundle:ApiRest:allClasses, class: null, field: null, _format: json }
     methods:  [GET]
     requirements:
         _format: json|xml
 
 nk_document_api_rest_all_fields:
-    path:  /fields/{class}.{_format}
+    path:  /document/fields/{class}.{_format}
     defaults: { _controller: nkDocumentBundle:ApiRest:allFields, class: null, field: null, _format: json }
     methods:  [GET]
     requirements:
@@ -14,14 +14,14 @@ nk_document_api_rest_all_fields:
         class: \w+
 
 nk_document_api_rest_all_documents:
-    path:  /documents/{class}/{field}.{_format}
+    path:  /document/documents/{class}/{field}.{_format}
     defaults: { _controller: nkDocumentBundle:ApiRest:allDocuments, class: null, field: null, _format: json }
     methods:  [GET]
     requirements:
         _format: json|xml
 
 nk_document_api_rest_show:
-    pattern:  /document/{id}.{_format}
+    path:  /document/document/{id}.{_format}
     defaults: { _controller: nkDocumentBundle:ApiRest:getDocument, _format: json }
     methods:  [GET]
     requirements:
@@ -29,21 +29,21 @@ nk_document_api_rest_show:
         _format: json|xml
 
 nk_document_api_rest_download_all:
-    pattern:  /document/{id}/download
+    path:  /document/document/{id}/download
     defaults: { _controller: nkDocumentBundle:Document:download }
     methods:  [GET]
     requirements:
         id: \d+
 
 nk_document_api_rest_search:
-    pattern:  /search.{_format}
+    path:  /document/search.{_format}
     defaults: { _controller: nkDocumentBundle:ApiRest:search, _format: json }
     methods:  [GET]
     requirements:
         _format: json|xml
 
 nk_document_api_rest_all_metadata:
-    pattern:  /metadatas.{_format}
+    path:  /document/metadatas.{_format}
     defaults: { _controller: nkDocumentBundle:ApiRest:allMetadatas, _format: json }
     methods:  [GET]
     requirements:
