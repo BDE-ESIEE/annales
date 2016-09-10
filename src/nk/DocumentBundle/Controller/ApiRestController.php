@@ -71,6 +71,7 @@ class ApiRestController extends FOSRestController
     /**
      * Fetch the list of all documents for a given class name and a given field name.
      *
+     * @Secure(roles="ROLE_USER")
      * @ApiDoc(
      *  section="Documents",
      *  description="Get documents list by class name and field name",
@@ -156,7 +157,8 @@ class ApiRestController extends FOSRestController
      *  parameters = {
      *    { "name" = "s", "dataType" = "string", "required" = true, "description" = "query string" },
      *    { "name" = "page", "dataType" = "integer", "required" = false, "description" = "page to fetch" }
-     *  }
+     *  },
+     *  resource=true
      * )
      */
     public function searchAction(Request $request)
