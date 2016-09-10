@@ -138,4 +138,13 @@ class OAuth2 extends BaseOAuth2
 
         return $stored;
     }
+
+    private function getJsonHeaders()
+    {
+        return array(
+            'Content-Type' => 'application/json',
+            'Cache-Control' => 'no-store',
+            'Pragma' => 'no-cache',
+        );
+    }
 }

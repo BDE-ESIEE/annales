@@ -11,14 +11,15 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class TokenController extends Controller
 {
 	/**
+	 * Retrieve an access token from whether a username/password tuple or a google access token.
 	 * @param Request $request
 	 * @param String $network
 	 * 
 	 * @return type
      *
      * @ApiDoc(
-     *  section="User",
-     *  description="Get OAuth2 access token from google access token",
+     *  section="OAuth2",
+     *  description="Get OAuth2 access token",
      *  input="nk\ApiBundle\Form\InputTokenType",
      *  resource=true
      * )

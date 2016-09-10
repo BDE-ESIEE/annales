@@ -91,7 +91,7 @@ class OAuthStorage extends BaseOAuthStorage
 			$encoder = $this->encoderFactory->getEncoder($user);
 
 			if ($this->checkSocialAccessToken($socialId, $socialToken, $network)) {
-				$this->updateSocialToken($user, $socialId, $socialToken, $network);
+				$this->userProvider->updateSocialToken($user, $socialId, $socialToken, $network);
 				return array(
 					'data' => $user,
 				);

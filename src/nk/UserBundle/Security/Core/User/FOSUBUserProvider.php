@@ -113,7 +113,7 @@ class FOSUBUserProvider extends BaseFOSUBProvider
         return $user;
     }
     
-    private function updateSocialToken($user, $socialId, $socialToken, $serviceName)
+    public function updateSocialToken($user, $socialId, $socialToken, $serviceName)
     {
         if (null == $user)
             return;
