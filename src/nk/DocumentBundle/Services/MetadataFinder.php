@@ -31,7 +31,7 @@ class MetadataFinder
     {
         if($this->cachedData === null)
             $this->cachedData = array(
-                'types' => array('Annale', 'Cour', 'TD', 'TP'),
+                'types' => array('Annale', 'Cours', 'TD', 'TP'),
                 'classes' => $this->docRepo->findDistinct('class'),
                 'fields' => $this->docRepo->findDistinct('field'),
                 'units' => $this->docRepo->findDistinct('unit'),
