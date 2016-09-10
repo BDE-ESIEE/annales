@@ -1,3 +1,7 @@
+nk_api:
+    resource: "@nkApiBundle/Resources/config/routing.yml"
+    prefix:   /
+
 nk_home:
     path: /
     defaults:
