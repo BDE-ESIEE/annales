@@ -156,3 +156,6 @@ hwi_oauth:
 
 
 nelmio_api_doc: ~
+
+fos_oauth_server:
+    db_driver:           orm

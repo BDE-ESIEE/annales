@@ -27,7 +27,8 @@
         "hwi/oauth-bundle": "^0.4.1",
         "jms/serializer-bundle": "^1.1",
         "friendsofsymfony/rest-bundle": "^2.0",
-        "nelmio/api-doc-bundle": "^2.13"
+        "nelmio/api-doc-bundle": "^2.13",
+        "friendsofsymfony/oauth-server-bundle": "^1.5"
     },
     "scripts": {
         "post-install-cmd": [
