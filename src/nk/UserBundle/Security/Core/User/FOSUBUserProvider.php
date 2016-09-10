@@ -41,7 +41,7 @@ class FOSUBUserProvider extends BaseFOSUBProvider
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
         // get property from provider configuration by provider name
-        // , it will return `facebook_id` in that case (see service definition below)
+        // , it will return `google_id` in that case (see service definition below)
         $property = $this->getProperty($response);
         $username = $response->getUsername(); // get the unique user identifier
 
@@ -107,6 +107,7 @@ class FOSUBUserProvider extends BaseFOSUBProvider
         }
 
         // else update access token of existing user
+        $user->$setterId($response->getUsername());
         $user->$setterAccessToken($response->getAccessToken());//update access token
 
         return $user;
