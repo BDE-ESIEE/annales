@@ -51,7 +51,8 @@ class DocumentController extends FOSRestController
 
 
     /**
-     * Download all the files from a document
+     * Download all the files from a document.
+     * Return a .zip containing the files.
      *
      * @ApiDoc(
      *  section="Documents",
@@ -120,6 +121,45 @@ class DocumentController extends FOSRestController
             'suggestions' => $suggestions,
         );
     }
+
+        // if($class === null){
+        //     $data = array(
+        //         'classes' => $this->get('nk.metadata_finder')->findAll()['classes'],
+        //     );
+        //     $view = $this->view($data, 200)
+        //         ->setTemplate("nkDocumentBundle:Document:list_classes.html.twig")
+        //         // ->setTemplateVar('products')
+        //         // ->setTemplateData($data)
+        //     ;
+        // }
+        // else if($field === null){
+        //     $data = array(
+        //         'class' => $class,
+        //         'fields' => $this->em->getRepository('nkDocumentBundle:Document')->findFieldsFromClass($class),
+        //     );
+        //     $view = $this->view($data, 200)
+        //         ->setTemplate("nkDocumentBundle:Document:list_fields.html.twig")
+        //         // ->setTemplateVar('products')
+        //         // ->setTemplateData($data)
+        //     ;
+        // }
+        // else{
+        //     $data = array(
+        //         'class' => $class,
+        //         'field' => $field,
+        //         'documents' => $this->em->getRepository('nkDocumentBundle:Document')->findBy(array(
+        //             'class' => $class,
+        //             'field' => $field
+        //         )),
+        //     );
+        //     $view = $this->view($data, 200)
+        //         ->setTemplate("nkDocumentBundle:Document:list_documents.html.twig")
+        //         // ->setTemplateVar('products')
+        //         // ->setTemplateData($data)
+        //     ;
+        // }
+
+        // return $this->handleView($view);
 
     /**
      * @Secure(roles="ROLE_USER")

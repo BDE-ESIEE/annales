@@ -146,4 +146,61 @@ class ApiRestController extends FOSRestController
         
         return $this->handleView($view);
     }
+
+    /**
+     * @Secure(roles="ROLE_USER")
+     *
+     * @ApiDoc(
+     *  section="Documents",
+     *  description="Search for documents from a given query string",
+     *  parameters = {
+     *    { "name" = "s", "dataType" = "string", "required" = true, "description" = "query string" },
+     *    { "name" = "page", "dataType" = "integer", "required" = false, "description" = "page to fetch" }
+     *  }
+     * )
+     */
+    public function searchAction(Request $request)
+    {
+        $searchQuery = $this->get('nk.search_engine')->search($request->query->get('s'));
+        $data = array(
+            'query'          => $searchQuery->__toString(),
+            'documents'      => $searchQuery->getResult()->getItems(),
+            'current_page'   => intval($searchQuery->getResult()->getCurrentPageNumber()),
+            'items_per_page' => $searchQuery->getResult()->getItemNumberPerPage(),
+            'total_count'    => $searchQuery->getResult()->getTotalItemCount(),
+            'next_page'      => $this->generateUrl(
+                $searchQuery->getResult()->getRoute(), 
+                [
+                    's' => $request->query->get('s'),
+                    $searchQuery->getResult()->getPaginatorOptions()['pageParameterName'] => $searchQuery->getResult()->getCurrentPageNumber()+1
+
+                ],
+                true
+            ),
+            'prev_page'      => $this->generateUrl(
+                $searchQuery->getResult()->getRoute(), 
+                [
+                    's' => $request->query->get('s'),
+                    $searchQuery->getResult()->getPaginatorOptions()['pageParameterName'] => $searchQuery->getResult()->getCurrentPageNumber()-1
+                ],
+                true
+            ),
+        );
+
+        if($request->query->get('page', 1) == 1)
+            $data['prev_page'] = false;
+
+        if($data['current_page'] * $data['items_per_page'] >= $data['total_count'])
+            $data['next_page'] = false;
+
+        $context = (new Context())
+            ->addGroup('list')
+            ->setMaxDepth(true)
+        ;
+
+        $view = $this->view($data, 200);
+        $view->setContext($context);
+
+        return $this->handleView($view);
+    }
 }

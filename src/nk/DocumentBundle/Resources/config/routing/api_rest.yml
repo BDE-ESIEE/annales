@@ -34,3 +34,10 @@ nk_document_api_rest_download_all:
     methods:  [GET]
     requirements:
         id: \d+
+
+nk_document_api_rest_search:
+    pattern:  /search.{_format}
+    defaults: { _controller: nkDocumentBundle:ApiRest:search, _format: json }
+    methods:  [GET]
+    requirements:
+        _format: json|xml
