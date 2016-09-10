@@ -1,0 +1,6 @@
+nk_api_oauth_social:
+    pattern: /oauth/v2/token/{network}
+    defaults: { _controller: nkApiBundle:Token:getSocialToken, _format:json }
+    methods:  [POST]
+    requirements:
+        network:  google

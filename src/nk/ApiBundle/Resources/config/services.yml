@@ -1,4 +1,18 @@
 services:
-#    nk_api.example:
-#        class: nk\ApiBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    nk_oauth_server.storage:
+        class: nk\ApiBundle\Storage\OAuthStorage
+        arguments: 
+            - "@fos_oauth_server.client_manager"
+            - "@fos_oauth_server.access_token_manager"
+            - "@fos_oauth_server.refresh_token_manager"
+            - "@fos_oauth_server.auth_code_manager"
+            - "@?fos_oauth_server.user_provider"
+            - "@security.encoder_factory"
+            - "@doctrine.orm.entity_manager"
+            - "@hwi_oauth.resource_owner.google"
+            - "%client_id%"
+            - "%client_secret%"
+
+    nk_oauth_server.server:
+        class: nk\ApiBundle\Security\OAuth2
+        arguments: ["@nk_oauth_server.storage", "%fos_oauth_server.server.options%"]

@@ -112,4 +112,18 @@ class FOSUBUserProvider extends BaseFOSUBProvider
 
         return $user;
     }
+    
+    private function updateSocialToken($user, $socialId, $socialToken, $serviceName)
+    {
+        if (null == $user)
+            return;
+        
+        $socialIdSetter = 'set'.ucfirst($serviceName).'Id';
+        $socialAccessTokenSetter = 'set'.ucfirst($serviceName).'AccessToken';
+        
+        $user->$socialIdSetter($socialId);
+        $user->$socialAccessTokenSetter($socialToken);
+        
+        $this->userManager->updateUser($user);
+    }
 }
