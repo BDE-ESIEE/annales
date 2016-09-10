@@ -156,12 +156,15 @@ hwi_oauth:
 
 
 nelmio_api_doc:
+    name: BDE ESIEE Paris - API Annales
     sandbox:
         authentication:
             name: Authorization      # access token name or query parameter name or header name
             delivery: http          # `query`, `http`, and `header` are supported
             # Required if http delivery is selected.
             type:     bearer         # `basic`, `bearer` are supported
+    cache:
+        enabled: true
 
 fos_oauth_server:
     db_driver:           orm
