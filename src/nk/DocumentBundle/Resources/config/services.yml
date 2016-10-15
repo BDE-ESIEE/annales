@@ -26,3 +26,7 @@ services:
             - @nk.metadata_finder
         tags:
             - { name: twig.extension }
+
+    nk.preview_generator:
+        class: nk\DocumentBundle\Services\PreviewGenerator
+        arguments: [@doctrine.orm.entity_manager]

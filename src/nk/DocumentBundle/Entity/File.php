@@ -73,6 +73,14 @@ class File
      */
     private $file;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="preview", type="string", length=255, nullable=true)
+     * @Serializer\Exclude
+     */
+    private $preview;
+
     public function __construct(Document $document = null)
     {
         if($document !== null)
@@ -202,5 +210,41 @@ class File
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Set preview
+     *
+     * @param string $preview
+     * @return File
+     */
+    public function setPreview($preview)
+    {
+        $this->preview = $preview;
+
+        return $this;
+    }
+
+    /**
+     * Get preview
+     *
+     * @return string
+     */
+    public function getPreview()
+    {
+        return $this->preview;
+    }
+
+    /**
+     * Get web path
+     *
+     * @return string
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("preview")
+     * @Serializer\Groups({"details"})
+     */
+    public function getPreviewWebPath()
+    {
+        return preg_replace('#^.+\.\./www/(.+)$#', '$1', $this->getPreview());
     }
 }

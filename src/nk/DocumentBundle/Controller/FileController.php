@@ -14,6 +14,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use nk\DocumentBundle\Services\PreviewGenerator;
 
 class FileController extends Controller
 {
@@ -53,7 +54,13 @@ class FileController extends Controller
 
             if($form->isValid()){
                 $this->em->persist($file);
-                if($file->getFile()) $this->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($file, $file->getFile());
+                if($file->getFile()) 
+                    $this->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($file, $file->getFile());
+                $this->em->flush();
+
+                $generator = new PreviewGenerator;
+                $generator->generatePreview($file);
+                $this->em->persist($file);
                 $this->em->flush();
 
                 $response['success'] = 1;
