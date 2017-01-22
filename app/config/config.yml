@@ -174,3 +174,6 @@ fos_oauth_server:
     auth_code_class:     nk\ApiBundle\Entity\AuthCode
     service:
         user_provider: nk_user.security.user_provider             # This property will be used when valid credentials are given to load the user upon access token creation
+        options:
+            access_token_lifetime: 86400 # 24h
+            refresh_token_lifetime: 2419200
