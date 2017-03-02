@@ -8,7 +8,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException as AuthenticationException;
+use OAuth2\OAuth2ServerException as AuthenticationException;
+use OAuth2\OAuth2;
 
 class FOSUBUserProvider extends BaseFOSUBProvider
 {
@@ -96,7 +97,7 @@ class FOSUBUserProvider extends BaseFOSUBProvider
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
                     /* @var $error \Symfony\Component\Validator\ConstraintViolation */
-                    throw new AuthenticationException($error->getMessage());
+                    throw new AuthenticationException(OAuth2::HTTP_UNAUTHORIZED, OAuth2::ERROR_INVALID_REQUEST, $error->getMessage());
                 }
             }
 
