@@ -170,6 +170,7 @@ class ApiRestController extends FOSRestController
             'current_page'   => intval($searchQuery->getResult()->getCurrentPageNumber()),
             'items_per_page' => $searchQuery->getResult()->getItemNumberPerPage(),
             'total_count'    => $searchQuery->getResult()->getTotalItemCount(),
+            'suggestion'     => false,
             'next_page'      => $this->generateUrl(
                 $searchQuery->getResult()->getRoute(), 
                 [
@@ -188,6 +189,10 @@ class ApiRestController extends FOSRestController
                 true
             ),
         );
+
+        if ($searchQuery->hasSuggestion()) {
+            $data['suggestion'] = $searchQuery->getSuggestion();
+        }
 
         if($request->query->get('page', 1) == 1)
             $data['prev_page'] = false;
