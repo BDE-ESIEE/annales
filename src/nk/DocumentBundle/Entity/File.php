@@ -81,6 +81,13 @@ class File
      */
     private $preview;
 
+    /**
+     * @var string
+     *
+     * @Serializer\Groups({"details"})
+     */
+    private $downloadPath;
+
     public function __construct(Document $document = null)
     {
         if($document !== null)
@@ -246,5 +253,26 @@ class File
     public function getPreviewWebPath()
     {
         return preg_replace('#^.+\.\./www/(.+)$#', '$1', $this->getPreview());
+    }
+
+    /**
+     * @return string
+     */
+    public function getDownloadPath()
+    {
+        return $this->downloadPath;
+    }
+
+    /**
+     * Set downloadPath
+     *
+     * @param string $downloadPath
+     * @return File
+     */
+    public function setDownloadPath($downloadPath)
+    {
+        $this->downloadPath = $downloadPath;
+
+        return $this;
     }
 }

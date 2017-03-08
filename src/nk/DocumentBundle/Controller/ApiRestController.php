@@ -131,6 +131,11 @@ class ApiRestController extends FOSRestController
         $this->em->persist($document);
         $this->em->flush();
 
+        foreach ($document->getFiles() as $file) {
+            /* @var $file \nk\DocumentBundle\Entity\File */
+            $file->setDownloadPath($this->generateUrl('nk_document_file_download', array('id' => $file->getId())));
+        }
+
         $data = array(
             'document'    => $document,
             'folders'     => $this->em->getRepository('nkFolderBundle:Folder')->getFolders($document),
