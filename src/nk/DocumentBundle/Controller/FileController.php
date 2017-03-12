@@ -82,9 +82,14 @@ class FileController extends Controller
 
     public function downloadAction(File $file)
     {
+        $contentDisposition = 'attachment; filename="'.$file->getName().'"';
+        if ($this->request->get('inline', false)) {
+            $contentDisposition = 'inline';
+        }
+
         $response = new Response();
         $response->headers->set('Content-Type', "application/pdf");
-        $response->headers->set('Content-Disposition', 'attachment; filename="'.$file->getName().'"');
+        $response->headers->set('Content-Disposition', $contentDisposition);
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->headers->set('Content-Length', filesize($file->getPath()));
         $response->setStatusCode(200);

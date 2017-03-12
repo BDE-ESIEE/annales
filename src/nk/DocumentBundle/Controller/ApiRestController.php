@@ -133,7 +133,7 @@ class ApiRestController extends FOSRestController
 
         foreach ($document->getFiles() as $file) {
             /* @var $file \nk\DocumentBundle\Entity\File */
-            $file->setDownloadPath($this->generateUrl('nk_document_file_download', array('id' => $file->getId())));
+            $file->setDownloadPath($this->generateUrl('nk_document_file_download', array('id' => $file->getId(), 'inline' => 1)));
         }
 
         $data = array(
