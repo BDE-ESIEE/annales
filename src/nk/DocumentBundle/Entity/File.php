@@ -88,6 +88,13 @@ class File
      */
     private $downloadPath;
 
+    /**
+     * @Gedmo\Slug(fields={"id", "name"}, suffix=".pdf")
+     * @ORM\Column(length=128, nullable=false, options={"default" : ""})
+     * @Serializer\Groups({"details"})
+     */
+    private $slug;
+
     public function __construct(Document $document = null)
     {
         if($document !== null)
@@ -274,5 +281,28 @@ class File
         $this->downloadPath = $downloadPath;
 
         return $this;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return File
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
